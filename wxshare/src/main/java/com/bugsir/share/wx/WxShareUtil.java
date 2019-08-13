@@ -94,6 +94,11 @@ public    class WxShareUtil {
 
     public  void shareImage(Bitmap bitmapData)
     {
+        shareImage(bitmapData, Bitmap.CompressFormat.JPEG);
+    }
+
+    public  void shareImage(Bitmap bitmapData,Bitmap.CompressFormat compressFormat)
+    {
         if (!isWXAppInstalledAndSupported())
         {
             Toast.makeText(this.mContext,"您未安装微信，请先下载微信",Toast.LENGTH_SHORT).show();
@@ -103,7 +108,7 @@ public    class WxShareUtil {
         WXMediaMessage msg = new WXMediaMessage();
         msg.mediaObject = imgObj;
         //缩略图大小不能大于32kb
-        msg.thumbData = BitmapUtil.compress2Array(bitmapData,30,false);
+        msg.thumbData = BitmapUtil.compress2Array(bitmapData,30,false, compressFormat);
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = "image" + System.currentTimeMillis();
         req.message = msg;

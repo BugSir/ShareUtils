@@ -137,6 +137,18 @@ public    class BitmapUtil   {
     }
 
     /**
+     * 把Bitmap压缩成二进制数组，默认使用JPEG格式并回收Bitmap
+     *
+     * @param bitmap
+     * @param maxKBSize 图片最大体积，单位为KB
+     * @return
+     */
+    public static byte[] compress2Array(Bitmap bitmap, int maxKBSize,boolean isRecycle,Bitmap.CompressFormat compressFormat)
+    {
+        return compress2Array(bitmap, compressFormat, 100, 0, 0, maxKBSize, isRecycle);
+    }
+
+    /**
      * 把Bitmap压缩成二进制数组
      *
      * @param bitmap
